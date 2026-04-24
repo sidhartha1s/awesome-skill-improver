@@ -1,0 +1,41 @@
+{
+  "skill_name": "awesome-skill-improver",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to improve the google-sheets skill. It's making too many API calls - I counted around 45 calls to write a simple spreadsheet. Can we get that down to under 30? Start the improvement process.",
+      "expected_output": "Creates workspace, discovers metrics from skill output, asks user which metrics to optimize, saves config.json with optimization_goals containing api_call_count <= 30",
+      "files": [],
+      "assertions": [
+        {"id": "workspace_created", "text": "Creates a skill-improver-workspace directory structure"},
+        {"id": "skill_located", "text": "Locates and references the google-sheets skill"},
+        {"id": "metric_identified", "text": "Identifies api_call_count or similar as the metric to optimize"},
+        {"id": "target_set", "text": "Sets target of <= 30 for the metric"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The website-qc skill is slow - takes about 3 minutes to QC a 10-page site. I want to speed it up. Also track if we introduce any new false positives (issue_count shouldn't go up). Initialize skill-improver for this.",
+      "expected_output": "Creates workspace, identifies wall_time_seconds as primary metric to minimize, issue_count as secondary metric to prevent regression, asks for test cases or uses skill's evals.json",
+      "files": [],
+      "assertions": [
+        {"id": "primary_metric", "text": "Identifies wall_time or speed as primary metric to optimize"},
+        {"id": "secondary_metric", "text": "Identifies issue_count as secondary metric for regression tracking"},
+        {"id": "skill_located", "text": "Locates and references the website-qc skill"},
+        {"id": "structured_approach", "text": "Proposes a structured improvement approach rather than ad-hoc changes"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Continue improving the skill in skill-improver-workspace. Run 2 more iterations. Last time we tried batching and it worked, so maybe try caching next.",
+      "expected_output": "Reads existing config.json and heuristics.md, generates 2 hypotheses (one about caching), runs experiments, evaluates results, updates heuristics.md with learnings, appends to results.tsv",
+      "files": [],
+      "assertions": [
+        {"id": "checks_existing_state", "text": "Checks for existing workspace/config before proceeding"},
+        {"id": "hypothesis_format", "text": "Generates hypothesis in structured format (problem, change, expected improvement)"},
+        {"id": "single_variable", "text": "Proposes changing ONE thing per iteration, not multiple"},
+        {"id": "builds_on_prior", "text": "References prior learning (batching worked) in new hypothesis"}
+      ]
+    }
+  ]
+}
